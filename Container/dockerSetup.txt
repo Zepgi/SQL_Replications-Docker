@@ -1,3 +1,5 @@
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+
 docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Admin1234*" -p 1539:1433 --name Repl-Docker -d mcr.microsoft.com/mssql/server:2022-latest 
 
 docker exec -it Repl-Docker /opt/mssql/bin/mssql-conf set sqlagent.enabled true
