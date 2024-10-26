@@ -1,0 +1,15 @@
+docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Admin1234*" -p 1539:1433 --name Repl-Docker -d mcr.microsoft.com/mssql/server:2022-latest 
+
+docker exec -it Repl-Docker /opt/mssql/bin/mssql-conf set sqlagent.enabled true
+
+docker stop Repl-Docker
+docker start Repl-Docker
+
+docker exec -it Repl-Docker bash
+
+mkdir /var/opt/mssql/ReplData
+chmod 777 /var/opt/mssql/ReplData
+
+** Ctrl + D para salir del bash
+
+docker cp AdventureWorks2022.bak Repl-Docker:/var/opt/mssql/data   
